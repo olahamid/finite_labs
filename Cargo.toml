@@ -25,7 +25,7 @@ crypto = { path = "crates/crypto" }
 
 # Cryptography: audited crates only (PRD §6.1). Wrapped by crates/crypto.
 sha2 = "0.10"
-ed25519-dalek = "2"
+ed25519-dalek = "3"
 
 # Browser demos. wasm-bindgen is pinned exactly because the `wasm-bindgen`
 # CLI that post-processes the .wasm must be the same version.
