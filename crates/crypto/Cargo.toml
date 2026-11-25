@@ -1,0 +1,11 @@
+[package]
+name = "crypto"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+description = "Thin wrappers around audited cryptography crates. No custom primitives (PRD §6.4)."
+
+[dependencies]
+sha2.workspace = true
+ed25519-dalek.workspace = true

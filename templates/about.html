@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}About · {{ site.name }}{% endblock %}
+
+{% block content %}
+<article class="page container prose">
+  <p class="eyebrow">About</p>
+  <h1>{{ site.about.heading }}</h1>
+  {% for paragraph in site.about.paragraphs %}
+  <p>{{ paragraph }}</p>
+  {% endfor %}
+
+  <h2>Contact</h2>
+  <p>Email us at <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>.</p>
+</article>
+{% endblock %}

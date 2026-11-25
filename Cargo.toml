@@ -1,0 +1,55 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.98"
+
+# Versions are declared once here; member crates opt in with `name.workspace = true`.
+[workspace.dependencies]
+askama = "0.16.0"
+axum = "0.8.9"
+chrono = { version = "0.4.45", default-features = false, features = ["clock", "std"] }
+serde = { version = "1.0.229", features = ["derive"] }
+tokio = { version = "1.53.1", features = ["full"] }
+toml = "1.1.4"
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.7.0", features = ["fs", "trace", "set-header", "compression-gzip", "compression-br"] }
+tracing = "0.1.44"
+tracing-subscriber = "0.3.23"
+http-body-util = "0.1.5"
+
+# Our own crates.
+crypto = { path = "crates/crypto" }
+
+# Cryptography: audited crates only (PRD §6.1). Wrapped by crates/crypto.
+sha2 = "0.10"
+ed25519-dalek = "2"
+
+# Browser demos. wasm-bindgen is pinned exactly because the `wasm-bindgen`
+# CLI that post-processes the .wasm must be the same version.
+wasm-bindgen = "=0.2.130"
+web-sys = { version = "0.3", features = [
+    "console",
+    "Crypto",
+    "Document",
+    "DomTokenList",
+    "Element",
+    "Event",
+    "EventTarget",
+    "HtmlElement",
+    "HtmlInputElement",
+    "Node",
+    "Text",
+    "Window",
+] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+
+# Smallest possible WebAssembly for slow mobile connections (PRD §5.4).
+[profile.release.package.playground]
+opt-level = "z"

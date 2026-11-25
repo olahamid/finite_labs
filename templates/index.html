@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% import "macros.html" as m %}
+
+{% block scripts %}
+<script type="module" src="/static/playground.js"></script>
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ site.hero.eyebrow }}</p>
+      <h1>{{ site.hero.headline }}</h1>
+      <p class="lede">{{ site.hero.subline }}</p>
+      <div class="actions actions-equal">
+        <a class="button button-primary" href="{{ site.hero.primary.href }}">{{ site.hero.primary.label }}</a>
+        <a class="button button-outline" href="{{ site.hero.secondary.href }}">{{ site.hero.secondary.label }}</a>
+      </div>
+    </div>
+
+    <!-- Live proof: real SHA-256 + Ed25519, run by crates/playground (Rust → WebAssembly). -->
+    <div class="live-proof" id="live-proof" role="group" aria-labelledby="lp-title">
+      <div class="lp-head">
+        <h2 class="lp-title" id="lp-title">Live proof</h2>
+        <span class="lp-algos">Ed25519 · SHA-256</span>
+      </div>
+
+      <label class="lp-label" for="lp-input">Type a message</label>
+      <input class="lp-input" id="lp-input" data-lp="input" type="text"
+             value="{{ demo_message }}" maxlength="200" autocomplete="off" spellcheck="false" disabled>
+
+      <dl class="lp-rows">
+        <div class="lp-row">
+          <dt>SHA-256</dt>
+          <dd class="hex" data-lp="hash">{{ demo_hash }}</dd>
+        </div>
+        <div class="lp-row">
+          <dt>Signature</dt>
+          <dd class="hex" data-lp="signature">…</dd>
+        </div>
+        <div class="lp-row">
+          <dt>Public key</dt>
+          <dd class="hex" data-lp="pubkey">…</dd>
+        </div>
+        <div class="lp-row">
+          <dt>Verifier receives</dt>
+          <dd class="lp-received" data-lp="received">{{ demo_message }}</dd>
+        </div>
+      </dl>
+
+      <div class="lp-foot">
+        <label class="switch">
+          <input type="checkbox" role="switch" data-lp="tamper" disabled>
+          <span class="switch-track" aria-hidden="true"></span>
+          <span>Tamper</span>
+        </label>
+        <p class="lp-status" data-lp="badge" data-state="pending" role="status">Generating key…</p>
+      </div>
+
+      <p class="lp-note">Runs entirely in your browser. Nothing is sent to our servers. For learning only.</p>
+      <p class="lp-fallback">This demo needs JavaScript and WebAssembly. The hash above is the real SHA-256 of the message.</p>
+    </div>
+  </div>
+</section>
+
+{% for section in site.sections %}
+<section class="section" id="{{ section.id }}" aria-labelledby="{{ section.id }}-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ section.eyebrow }}</p>
+      <h2 id="{{ section.id }}-heading">{{ section.heading }}</h2>
+      <p class="section-body">{{ section.body }}</p>
+      {% if let Some(link) = section.link.as_ref() %}
+      <p class="section-link"><a class="button button-primary" href="{{ link.href }}">{{ link.label }}</a></p>
+      {% endif %}
+    </div>
+
+    {% if !section.cards.is_empty() %}
+    {% call m::card_list(&section.cards, false) %}{% endcall %}
+    {% endif %}
+
+    {% for sub in section.subsections %}
+    <div class="subsection" id="{{ sub.id }}" aria-labelledby="{{ sub.id }}-heading">
+      <h3 id="{{ sub.id }}-heading">{{ sub.heading }}</h3>
+      <p class="section-body">{{ sub.body }}</p>
+      {% if !sub.cards.is_empty() %}
+      {% call m::card_list(&sub.cards, true) %}{% endcall %}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

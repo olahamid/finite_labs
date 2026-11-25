@@ -1,0 +1,16 @@
+[package]
+name = "playground"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+description = "Browser demos: Rust compiled to WebAssembly. Build with scripts/build-wasm.sh."
+
+[lib]
+# cdylib → the .wasm file for the browser; rlib → lets `cargo test` run the pure logic natively.
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+crypto.workspace = true
+wasm-bindgen.workspace = true
+web-sys.workspace = true

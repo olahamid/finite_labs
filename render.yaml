@@ -1,0 +1,9 @@
+# Render blueprint: connect the GitHub repo in Render ("New > Blueprint") and
+# it will build the Dockerfile and deploy. Render sets PORT automatically.
+services:
+  - type: web
+    name: finite-labs
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    autoDeploy: true

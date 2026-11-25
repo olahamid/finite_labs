@@ -1,0 +1,21 @@
+{# A grid of cards. `nested` = inside a subsection, so titles drop to <h4>. #}
+{% macro card_list(cards, nested) %}
+<ul class="cards cards-{{ cards.len() }}">
+  {% for card in cards %}
+  <li class="card">
+    <span class="card-hex" aria-hidden="true">{{ card.fingerprint() }}</span>
+    {% if let Some(label) = card.label.as_deref() %}
+    <span class="badge{% if card.is_live() %} badge-live{% endif %}">{{ label }}</span>
+    {% endif %}
+    {% if nested %}<h4 class="card-title">{% else %}<h3 class="card-title">{% endif %}
+      {% if let Some(href) = card.href.as_deref() %}
+      <a href="{{ href }}">{{ card.title }}</a>
+      {% else %}
+      {{ card.title }}
+      {% endif %}
+    {% if nested %}</h4>{% else %}</h3>{% endif %}
+    <p>{{ card.summary }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.name }}: cryptography you can own{% endblock %}</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ site.name }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/static/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Loaded early (not deferred) so the saved theme applies before first paint. -->
+  <script src="/static/theme.js"></script>
+  {% block scripts %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="wordmark" href="/" aria-label="{{ site.name }} home">
+        <span class="wordmark-mark" aria-hidden="true"></span>{{ site.name }}
+      </a>
+
+      <nav class="nav-desktop" aria-label="Main">
+        <ul>
+          {% for link in site.nav %}
+          <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Hidden until theme.js runs, so it never shows as a dead button without JS. -->
+        <button class="theme-toggle" type="button" aria-label="Switch colour theme" hidden>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>
+          </svg>
+        </button>
+        <a class="button button-primary button-small" href="{{ site.cta.href }}">{{ site.cta.label }}</a>
+
+        <details class="nav-mobile">
+          <summary>Menu</summary>
+          <nav aria-label="Main (mobile)">
+            <ul>
+              {% for link in site.nav %}
+              <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+              {% endfor %}
+              <li class="menu-cta"><a href="{{ site.cta.href }}">{{ site.cta.label }}</a></li>
+            </ul>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="wordmark" href="/">
+          <span class="wordmark-mark" aria-hidden="true"></span>{{ site.name }}
+        </a>
+        <p>{{ site.footer.blurb }}</p>
+      </div>
+      {% for column in site.footer.columns %}
+      <div class="footer-column">
+        <h2 class="footer-title">{{ column.title }}</h2>
+        <ul>
+          {% for link in column.links %}
+          <li><a href="{{ link.href }}">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; {{ year }} {{ site.name }}. Built in Nigeria, written in Rust.</p>
+      {% if !site.footer.social.is_empty() %}
+      <ul class="social">
+        {% for link in site.footer.social %}
+        <li><a href="{{ link.href }}" rel="me noopener">{{ link.label }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </footer>
+</body>
+</html>

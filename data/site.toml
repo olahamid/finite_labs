@@ -1,0 +1,216 @@
+# All site copy lives here. Edit text without touching templates or Rust code.
+# Homepage sections render in the order they appear below.
+# Products lead slightly; education carries equal weight and comes straight after.
+
+name = "Finite Labs"
+# TODO(M6): replace with the real domain.
+domain = "finitelabs.example"
+description = "Finite Labs builds real-world cryptographic software and hardware, teaches the knowledge behind it, and publishes open research, to put digital ownership and control back in your hands."
+# TODO(M6): replace with a real inbox.
+contact_email = "hello@finitelabs.example"
+
+# ---------------------------------------------------------------- navigation
+# Section pages (Learn, Playground, Research) arrive in M2–M5; until then they
+# point at the matching homepage section.
+[[nav]]
+label = "Products"
+href = "/#products"
+
+[[nav]]
+label = "Learn"
+href = "/#teach"
+
+[[nav]]
+label = "Research"
+href = "/#research"
+
+[[nav]]
+label = "About"
+href = "/about"
+
+[cta]
+label = "Early access"
+href = "/#early-access"
+
+# ---------------------------------------------------------------------- hero
+[hero]
+eyebrow = "Software · Hardware · Education · Research"
+# Draft headline — final wording TBD (PRD §5.1).
+headline = "Cryptography you can own."
+subline = "Finite Labs builds real-world cryptographic software and hardware, teaches the knowledge behind it, and publishes open research, to put digital ownership and control back in your hands."
+# Both buttons are the same size (PRD §5.1).
+primary = { label = "Get early access", href = "/#early-access" }
+secondary = { label = "Start learning", href = "/#teach" }
+
+# ------------------------------------------------------------------ sections
+[[sections]]
+id = "problem"
+eyebrow = "The problem"
+heading = "We know the problem"
+body = "Cryptography protects every payment, login and ID check in Africa, yet the people who understand it are few. Most learning material assumes a Western context and a heavy maths background, companies covered by the NDPA 2023 struggle to find security-literate staff, and there is no independent African voice publishing cryptography research."
+
+[[sections]]
+id = "products"
+eyebrow = "Products · in development"
+heading = "We build"
+body = "Practical cryptographic tools for a world of AI and digital identity: proving where content came from, keeping secrets out of the wrong hands, and catching cryptography mistakes before they ship."
+link = { label = "Get early access", href = "/#early-access" }
+
+[[sections.cards]]
+title = "Content provenance"
+summary = "Sign and verify AI outputs and digital media, so anyone can check who made something and whether it was changed."
+
+[[sections.cards]]
+title = "Secrets for AI agents"
+summary = "Keep API keys and credentials out of prompts, logs and model memory, with access you can audit."
+
+[[sections.cards]]
+title = "Crypto-misuse scanner"
+summary = "Find weak algorithms, reused nonces and hard-coded keys in your codebase, with fixes you can understand."
+
+[[sections]]
+id = "teach"
+eyebrow = "Learn"
+heading = "We teach"
+body = "Education is a core part of Finite Labs, not an add-on. Clear, practical lessons start from zero and go deep, with examples from mobile money, fintech and national identity systems. In-depth courses and staff training for companies are on the way."
+
+[[sections.cards]]
+title = "Cryptography Foundations"
+summary = "Nine lessons from classical ciphers to post-quantum cryptography. The best place to start."
+label = "Coming soon"
+
+[[sections.cards]]
+title = "Articles"
+summary = "Beginner to advanced explainers on hashing, encryption, signatures, randomness and common mistakes."
+label = "Coming soon"
+
+[[sections.cards]]
+title = "Courses & training"
+summary = "Structured courses with certificates, and training for banks, fintechs and NDPA-regulated teams."
+label = "Coming soon"
+
+# The Playground is part of Learn: a subsection of the education section.
+[[sections.subsections]]
+id = "playground"
+heading = "Playground: try it yourself"
+body = "Interactive demos that run entirely in your browser, written in Rust and compiled to WebAssembly. Nothing you type is sent to our servers. The live proof at the top of this page is the first one."
+
+[[sections.subsections.cards]]
+title = "Hashing"
+summary = "Change one letter and watch SHA-256 and SHA-3 output change completely."
+label = "Coming soon"
+
+[[sections.subsections.cards]]
+title = "Symmetric encryption"
+summary = "Encrypt and decrypt with AES-GCM, and see the nonce and authentication tag."
+label = "Coming soon"
+
+[[sections.subsections.cards]]
+title = "Digital signatures"
+summary = "Sign a message with Ed25519, tamper with it, and watch verification fail."
+label = "Live"
+href = "/#live-proof"
+
+[[sections]]
+id = "research"
+eyebrow = "Research"
+heading = "We publish our work"
+body = "Independent research notes and papers, written in the open, with sources and citations for every claim. The first notes are being written now."
+
+[[sections]]
+id = "pillars"
+eyebrow = "What we do"
+heading = "Four pillars"
+body = "We build practical security tools and hardware, teach cryptography clearly, and publish our research in the open."
+
+[[sections.cards]]
+title = "Software & tools"
+summary = "Practical cryptographic tools, including security for AI systems."
+label = "In development"
+
+[[sections.cards]]
+title = "Education"
+summary = "Lessons, learning paths, courses and training on cryptography."
+label = "Live"
+
+[[sections.cards]]
+title = "Research"
+summary = "Public papers, analyses and open-source work."
+label = "Live"
+
+[[sections.cards]]
+title = "Hardware"
+summary = "Secure hardware, designed with partners."
+label = "Later"
+
+[[sections]]
+id = "audience"
+eyebrow = "Who it's for"
+heading = "Wherever you're starting from"
+body = "Every lesson states its difficulty and prerequisites, and every tool is built to be understood, so you can find your own way in."
+
+[[sections.cards]]
+title = "Students & learners"
+summary = "Beginner-friendly lessons that start from zero, with no heavy maths up front."
+
+[[sections.cards]]
+title = "Everyday users & creators"
+summary = "Protect your identity and verify the digital content you see and share."
+
+[[sections.cards]]
+title = "Builders & AI makers"
+summary = "Ship secure apps and AI systems without needing a maths degree."
+
+[[sections.cards]]
+title = "Businesses & compliance teams"
+summary = "Meet NDPA 2023 and real-world risk standards, with training for your staff."
+
+[[sections.cards]]
+title = "Researchers"
+summary = "Rigorous notes with open citations."
+
+[[sections]]
+id = "early-access"
+eyebrow = "Early access"
+heading = "Be first in line"
+body = "Get early access to our tools, new lessons and research. Our newsletter launches soon; until then, email us and we'll add you to the list. No spam, and you can leave at any time."
+link = { label = "Email us for early access", href = "mailto:hello@finitelabs.example?subject=Early%20access" }
+
+# -------------------------------------------------------------------- footer
+[footer]
+blurb = "Cryptographic software, hardware, education and research, built in Nigeria for the world."
+
+[[footer.columns]]
+title = "Build & learn"
+links = [
+  { label = "Products", href = "/#products" },
+  { label = "Learn", href = "/#teach" },
+  { label = "Playground", href = "/#playground" },
+]
+
+[[footer.columns]]
+title = "Research"
+links = [
+  { label = "Publications", href = "/#research" },
+]
+
+[[footer.columns]]
+title = "Company"
+links = [
+  { label = "About", href = "/about" },
+  { label = "Contact", href = "mailto:hello@finitelabs.example" },
+]
+
+# Add social links when the accounts exist, e.g.
+# [[footer.social]]
+# label = "GitHub"
+# href = "https://github.com/..."
+
+# --------------------------------------------------------------------- about
+[about]
+heading = "About Finite Labs"
+paragraphs = [
+  "Finite Labs is a cryptography company based in Nigeria. We build cryptographic software and hardware, teach the knowledge behind it, and publish open research, so that people and organisations keep ownership and control of their own data.",
+  "Products and education carry equal weight. Our tools solve real security problems, and our lessons, courses and training help people understand and use cryptography correctly.",
+  "We never invent our own cryptographic algorithms. Everything we teach and build uses well-studied, audited primitives.",
+]

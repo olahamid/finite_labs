@@ -1,0 +1,6 @@
+[toolchain]
+# "stable" reuses the toolchain already installed (currently 1.98.1) instead of
+# downloading a second copy. The minimum version is enforced by
+# `rust-version` in Cargo.toml.
+channel = "stable"
+components = ["rustfmt", "clippy"]
